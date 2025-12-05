@@ -1,104 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
     <title>Dragonvape</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body {
-            margin: 0;
-            min-height: 100vh;
-            font-family: 'Segoe UI', Arial, sans-serif;
-            background: #dddddd;
-            position: relative;
-            overflow: hidden;
-        }
-        .smoke-bg {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            pointer-events: none;
-            z-index: 0;
-        }
-        .content {
-            position: relative;
-            z-index: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            color: #000000;
-            text-shadow: 0 2px 8px rgba(0,0,0,0.4);
-        }
-        h1 {
-            font-size: 3rem;
-            letter-spacing: 2px;
-            margin-bottom: 1rem;
-        }
-        p {
-            font-size: 1.3rem;
-            max-width: 500px;
-            text-align: center;
-        }
-    </style>
+    <link rel="stylesheet" href="default.css">
 </head>
 <body>
     <canvas class="smoke-bg"></canvas>
     <div class="content">
-        <h1>Dragonvape</h1>
-        <p>Experience the next level of vaping with Dragonvape. Smooth clouds, bold flavors, and a legendary vibe.</p>
+        <div class="fixedHeader">
+            <img src="assets/logo-banner.jpg" class="headerLogo" alt="Dragonvape Logo">
+            <img src="assets/cunderworld.jpg" class="headerImage" alt="Underworld Collection">
+            <img src="assets/celvenlady.jpg" class="headerImage" alt="Elvenlady Collection">
+            <img src="assets/cskygods.jpg" class="headerImage" alt="Skygods Collection">
+            <h2>COLEÇÕES EXCLUSIVAS</h2>
+        </div>
+        <h1>...em breve!</h1>
+        <p>Experimente o próximo nível do vaping com a Dragonvape. Nuvens suaves, sabores marcantes e uma vibe lendária.</p>
     </div>
-    <script>
-        // Simple animated white smoke effect
-        const canvas = document.querySelector('.smoke-bg');
-        const ctx = canvas.getContext('2d');
-        let w, h;
-        function resize() {
-            w = canvas.width = window.innerWidth;
-            h = canvas.height = window.innerHeight;
-        }
-        window.addEventListener('resize', resize);
-        resize();
-
-        const smokes = [];
-        for (let i = 0; i < 25; i++) {
-            smokes.push({
-                x: Math.random() * w,
-                y: h + Math.random() * h / 2,
-                r: 60 + Math.random() * 80,
-                alpha: 0.15 + Math.random() * 0.15,
-                speed: 0.3 + Math.random() * 0.7,
-                drift: (Math.random() - 0.5) * 0.5
-            });
-        }
-
-        function drawSmoke() {
-            ctx.clearRect(0, 0, w, h);
-            for (let s of smokes) {
-                ctx.save();
-                ctx.globalAlpha = s.alpha;
-                ctx.beginPath();
-                ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-                ctx.fillStyle = '#fff';
-                ctx.shadowColor = '#fff';
-                ctx.shadowBlur = 40;
-                ctx.fill();
-                ctx.restore();
-
-                s.y -= s.speed;
-                s.x += s.drift;
-                if (s.y + s.r < 0) {
-                    s.x = Math.random() * w;
-                    s.y = h + Math.random() * h / 2;
-                    s.r = 60 + Math.random() * 80;
-                    s.alpha = 0.15 + Math.random() * 0.15;
-                    s.speed = 0.3 + Math.random() * 0.7;
-                    s.drift = (Math.random() - 0.5) * 0.5;
-                }
-            }
-            requestAnimationFrame(drawSmoke);
-        }
-        drawSmoke();
-    </script>
+    <script src="smoke.js"></script>
 </body>
 </html>
