@@ -17,6 +17,13 @@ body {
     z-index: 0;
 }
 
+.container {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap; /* stack on small screens */
+}
+
 .content {
     position: relative;
     z-index: 1;
